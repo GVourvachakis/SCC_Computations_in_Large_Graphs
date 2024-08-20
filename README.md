@@ -8,7 +8,11 @@ This document outlines the implementation of Kosaraju's algorithm for computing 
 
 ## Execution Time Comparison
 
-For large graphs, such as the one with 875,714 vertices provided in the `scc.txt` file, the implementation of Kosaraju's algorithm using mypyc has demonstrated significant performance improvements.
+For large graphs, such as the one provided by course **Design and Analysis of Algorithms/Graph Search, Shortest Paths, and Data Structures/Module 1/Project Assignement** offered by Coursera from Stanford University, the implementation of Kosaraju's algorithm using mypyc has demonstrated significant performance improvements.
+
+**Context about the Graph of the assignment**:
+- Order of Graph = 875,714 (i.e. 875,714 vertices) 
+- Sizes of the 5 largest SCCs: 434821, 968, 459, 313, 211
 
 By compiling the Python modules to C extensions using mypyc, I achieved an execution time of **3.14 hours** for processing the given graph. In contrast, the same algorithm implemented in vanilla Python without mypyc took approximately **31.4 hours** to complete, based on extrapolation from smaller test cases. This comparison showcases a **10x speedup** in execution time when using mypyc for compiling the Python code.
 
