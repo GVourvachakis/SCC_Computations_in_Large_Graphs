@@ -1,0 +1,1342 @@
+def dfs_finish_time_kosaraju_scc_obj.__get__(__mypyc_self__, instance, owner):
+    __mypyc_self__, instance, owner, r0 :: object
+    r1 :: bit
+    r2, r3 :: object
+L0:
+    r0 = load_address _Py_NoneStruct
+    r1 = instance == r0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    inc_ref __mypyc_self__
+    return __mypyc_self__
+L2:
+    r2 = PyMethod_New(__mypyc_self__, instance)
+    if is_error(r2) goto L4 else goto L3
+L3:
+    return r2
+L4:
+    r3 = <error> :: object
+    return r3
+
+def dfs_finish_time_kosaraju_scc_obj.__call__(__mypyc_self__, vertex):
+    __mypyc_self__ :: scc_algo.dfs_finish_time_kosaraju_scc_obj
+    vertex :: int
+    r0 :: scc_algo.kosaraju_scc_env
+    r1 :: list
+    r2 :: object
+    r3, r4, r5 :: ptr
+    r6 :: native_int
+    r7 :: short_int
+    r8 :: bit
+    r9 :: object
+    r10 :: int
+    r11 :: set
+    r12 :: object
+    r13 :: i32
+    r14 :: bit
+    r15, r16 :: bool
+    r17 :: set
+    r18 :: object
+    r19 :: i32
+    r20 :: bit
+    r21 :: object
+    r22 :: str
+    r23, r24, r25, r26, r27 :: object
+    r28 :: set
+    r29 :: i32
+    r30 :: bit
+    r31, r32 :: bool
+    r33 :: i32
+    r34, r35 :: bit
+    r36 :: object
+    r37 :: int
+    r38 :: list
+    r39 :: object
+    r40 :: i32
+    r41 :: bit
+    r42, r43 :: bool
+    r44 :: list
+    r45 :: object
+    r46 :: i32
+    r47 :: bit
+    r48 :: None
+L0:
+    r0 = __mypyc_self__.__mypyc_env__
+    if is_error(r0) goto L29 (error at dfs_finish_time:23) else goto L1
+L1:
+    r1 = PyList_New(1)
+    if is_error(r1) goto L30 (error at dfs_finish_time:27) else goto L2
+L2:
+    inc_ref vertex :: int
+    r2 = box(int, vertex)
+    r3 = get_element_ptr r1 ob_item :: PyListObject
+    r4 = load_mem r3 :: ptr*
+    set_mem r4, r2 :: builtins.object*
+L3:
+    r5 = get_element_ptr r1 ob_size :: PyVarObject
+    r6 = load_mem r5 :: native_int*
+    r7 = r6 << 1
+    r8 = r7 != 0
+    if r8 goto L4 else goto L31 :: bool
+L4:
+    r9 = CPyList_GetItemShort(r1, -2)
+    if is_error(r9) goto L32 (error at dfs_finish_time:29) else goto L5
+L5:
+    r10 = unbox(int, r9)
+    dec_ref r9
+    if is_error(r10) goto L32 (error at dfs_finish_time:29) else goto L6
+L6:
+    r11 = r0.visited
+    if is_error(r11) goto L33 (error at dfs_finish_time:30) else goto L7
+L7:
+    inc_ref r10 :: int
+    r12 = box(int, r10)
+    r13 = PySet_Contains(r11, r12)
+    dec_ref r11
+    dec_ref r12
+    r14 = r13 >= 0 :: signed
+    if not r14 goto L33 (error at dfs_finish_time:30) else goto L8 :: bool
+L8:
+    r15 = truncate r13: i32 to builtins.bool
+    r16 = r15 ^ 1
+    if r16 goto L9 else goto L21 :: bool
+L9:
+    r17 = r0.visited
+    if is_error(r17) goto L33 (error at dfs_finish_time:31) else goto L10
+L10:
+    inc_ref r10 :: int
+    r18 = box(int, r10)
+    r19 = PySet_Add(r17, r18)
+    dec_ref r17
+    dec_ref r18
+    r20 = r19 >= 0 :: signed
+    if not r20 goto L33 (error at dfs_finish_time:31) else goto L11 :: bool
+L11:
+    r21 = r0.graph
+    if is_error(r21) goto L33 (error at dfs_finish_time:32) else goto L12
+L12:
+    r22 = 'adj_list'
+    r23 = CPyObject_GetAttr(r21, r22)
+    dec_ref r21
+    if is_error(r23) goto L33 (error at dfs_finish_time:32) else goto L13
+L13:
+    r24 = box(int, r10)
+    r25 = PyObject_GetItem(r23, r24)
+    dec_ref r23
+    dec_ref r24
+    if is_error(r25) goto L32 (error at dfs_finish_time:32) else goto L14
+L14:
+    r26 = PyObject_GetIter(r25)
+    dec_ref r25
+    if is_error(r26) goto L32 (error at dfs_finish_time:32) else goto L15
+L15:
+    r27 = PyIter_Next(r26)
+    if is_error(r27) goto L34 else goto L16
+L16:
+    r28 = r0.visited
+    if is_error(r28) goto L35 (error at dfs_finish_time:33) else goto L17
+L17:
+    r29 = PySet_Contains(r28, r27)
+    dec_ref r28
+    r30 = r29 >= 0 :: signed
+    if not r30 goto L35 (error at dfs_finish_time:33) else goto L18 :: bool
+L18:
+    r31 = truncate r29: i32 to builtins.bool
+    r32 = r31 ^ 1
+    if r32 goto L19 else goto L36 :: bool
+L19:
+    r33 = PyList_Append(r1, r27)
+    dec_ref r27
+    r34 = r33 >= 0 :: signed
+    if not r34 goto L37 (error at dfs_finish_time:34) else goto L15 :: bool
+L20:
+    r35 = CPy_NoErrOccured()
+    if not r35 goto L32 (error at dfs_finish_time:32) else goto L3 :: bool
+L21:
+    r36 = CPyList_PopLast(r1)
+    if is_error(r36) goto L33 (error at dfs_finish_time:36) else goto L22
+L22:
+    r37 = unbox(int, r36)
+    dec_ref r36
+    if is_error(r37) goto L33 (error at dfs_finish_time:36) else goto L38
+L23:
+    r38 = r0.finish_stack
+    if is_error(r38) goto L33 (error at dfs_finish_time:37) else goto L24
+L24:
+    inc_ref r10 :: int
+    r39 = box(int, r10)
+    r40 = PySequence_Contains(r38, r39)
+    dec_ref r38
+    dec_ref r39
+    r41 = r40 >= 0 :: signed
+    if not r41 goto L33 (error at dfs_finish_time:37) else goto L25 :: bool
+L25:
+    r42 = truncate r40: i32 to builtins.bool
+    r43 = r42 ^ 1
+    if r43 goto L26 else goto L39 :: bool
+L26:
+    r44 = r0.finish_stack
+    if is_error(r44) goto L33 (error at dfs_finish_time:38) else goto L27
+L27:
+    r45 = box(int, r10)
+    r46 = PyList_Append(r44, r45)
+    dec_ref r44
+    dec_ref r45
+    r47 = r46 >= 0 :: signed
+    if not r47 goto L32 (error at dfs_finish_time:38) else goto L3 :: bool
+L28:
+    return 1
+L29:
+    r48 = <error> :: None
+    return r48
+L30:
+    dec_ref r0
+    goto L29
+L31:
+    dec_ref r0
+    dec_ref r1
+    goto L28
+L32:
+    dec_ref r0
+    dec_ref r1
+    goto L29
+L33:
+    dec_ref r0
+    dec_ref r1
+    dec_ref r10 :: int
+    goto L29
+L34:
+    dec_ref r26
+    goto L20
+L35:
+    dec_ref r0
+    dec_ref r1
+    dec_ref r26
+    dec_ref r27
+    goto L29
+L36:
+    dec_ref r27
+    goto L15
+L37:
+    dec_ref r0
+    dec_ref r1
+    dec_ref r26
+    goto L29
+L38:
+    dec_ref r37 :: int
+    goto L23
+L39:
+    dec_ref r10 :: int
+    goto L3
+
+def dfs_collect_scc_size_kosaraju_scc_obj.__get__(__mypyc_self__, instance, owner):
+    __mypyc_self__, instance, owner, r0 :: object
+    r1 :: bit
+    r2, r3 :: object
+L0:
+    r0 = load_address _Py_NoneStruct
+    r1 = instance == r0
+    if r1 goto L1 else goto L2 :: bool
+L1:
+    inc_ref __mypyc_self__
+    return __mypyc_self__
+L2:
+    r2 = PyMethod_New(__mypyc_self__, instance)
+    if is_error(r2) goto L4 else goto L3
+L3:
+    return r2
+L4:
+    r3 = <error> :: object
+    return r3
+
+def dfs_collect_scc_size_kosaraju_scc_obj.__call__(__mypyc_self__, vertex):
+    __mypyc_self__ :: scc_algo.dfs_collect_scc_size_kosaraju_scc_obj
+    vertex :: int
+    r0 :: scc_algo.kosaraju_scc_env
+    r1 :: list
+    r2 :: object
+    r3, r4 :: ptr
+    size :: int
+    r5 :: ptr
+    r6 :: native_int
+    r7 :: short_int
+    r8 :: bit
+    r9 :: object
+    r10 :: int
+    r11 :: set
+    r12 :: object
+    r13 :: i32
+    r14 :: bit
+    r15, r16 :: bool
+    r17 :: set
+    r18 :: object
+    r19 :: i32
+    r20 :: bit
+    r21 :: int
+    r22 :: object
+    r23 :: str
+    r24, r25, r26, r27, r28 :: object
+    r29 :: set
+    r30 :: i32
+    r31 :: bit
+    r32, r33 :: bool
+    r34 :: i32
+    r35, r36 :: bit
+    r37 :: int
+L0:
+    r0 = __mypyc_self__.__mypyc_env__
+    if is_error(r0) goto L22 (error at dfs_collect_scc_size:51) else goto L1
+L1:
+    r1 = PyList_New(1)
+    if is_error(r1) goto L23 (error at dfs_collect_scc_size:55) else goto L2
+L2:
+    inc_ref vertex :: int
+    r2 = box(int, vertex)
+    r3 = get_element_ptr r1 ob_item :: PyListObject
+    r4 = load_mem r3 :: ptr*
+    set_mem r4, r2 :: builtins.object*
+    size = 0
+L3:
+    r5 = get_element_ptr r1 ob_size :: PyVarObject
+    r6 = load_mem r5 :: native_int*
+    r7 = r6 << 1
+    r8 = r7 != 0
+    if r8 goto L4 else goto L24 :: bool
+L4:
+    r9 = CPyList_PopLast(r1)
+    if is_error(r9) goto L25 (error at dfs_collect_scc_size:58) else goto L5
+L5:
+    r10 = unbox(int, r9)
+    dec_ref r9
+    if is_error(r10) goto L25 (error at dfs_collect_scc_size:58) else goto L6
+L6:
+    r11 = r0.visited
+    if is_error(r11) goto L26 (error at dfs_collect_scc_size:59) else goto L7
+L7:
+    inc_ref r10 :: int
+    r12 = box(int, r10)
+    r13 = PySet_Contains(r11, r12)
+    dec_ref r11
+    dec_ref r12
+    r14 = r13 >= 0 :: signed
+    if not r14 goto L26 (error at dfs_collect_scc_size:59) else goto L8 :: bool
+L8:
+    r15 = truncate r13: i32 to builtins.bool
+    r16 = r15 ^ 1
+    if r16 goto L9 else goto L27 :: bool
+L9:
+    r17 = r0.visited
+    if is_error(r17) goto L26 (error at dfs_collect_scc_size:60) else goto L10
+L10:
+    inc_ref r10 :: int
+    r18 = box(int, r10)
+    r19 = PySet_Add(r17, r18)
+    dec_ref r17
+    dec_ref r18
+    r20 = r19 >= 0 :: signed
+    if not r20 goto L26 (error at dfs_collect_scc_size:60) else goto L11 :: bool
+L11:
+    r21 = CPyTagged_Add(size, 2)
+    dec_ref size :: int
+    size = r21
+    r22 = r0.reversed_graph
+    if is_error(r22) goto L26 (error at dfs_collect_scc_size:62) else goto L12
+L12:
+    r23 = 'adj_list'
+    r24 = CPyObject_GetAttr(r22, r23)
+    dec_ref r22
+    if is_error(r24) goto L26 (error at dfs_collect_scc_size:62) else goto L13
+L13:
+    r25 = box(int, r10)
+    r26 = PyObject_GetItem(r24, r25)
+    dec_ref r24
+    dec_ref r25
+    if is_error(r26) goto L25 (error at dfs_collect_scc_size:62) else goto L14
+L14:
+    r27 = PyObject_GetIter(r26)
+    dec_ref r26
+    if is_error(r27) goto L25 (error at dfs_collect_scc_size:62) else goto L15
+L15:
+    r28 = PyIter_Next(r27)
+    if is_error(r28) goto L28 else goto L16
+L16:
+    r29 = r0.visited
+    if is_error(r29) goto L29 (error at dfs_collect_scc_size:63) else goto L17
+L17:
+    r30 = PySet_Contains(r29, r28)
+    dec_ref r29
+    r31 = r30 >= 0 :: signed
+    if not r31 goto L29 (error at dfs_collect_scc_size:63) else goto L18 :: bool
+L18:
+    r32 = truncate r30: i32 to builtins.bool
+    r33 = r32 ^ 1
+    if r33 goto L19 else goto L30 :: bool
+L19:
+    r34 = PyList_Append(r1, r28)
+    dec_ref r28
+    r35 = r34 >= 0 :: signed
+    if not r35 goto L31 (error at dfs_collect_scc_size:64) else goto L15 :: bool
+L20:
+    r36 = CPy_NoErrOccured()
+    if not r36 goto L25 (error at dfs_collect_scc_size:62) else goto L3 :: bool
+L21:
+    return size
+L22:
+    r37 = <error> :: int
+    return r37
+L23:
+    dec_ref r0
+    goto L22
+L24:
+    dec_ref r0
+    dec_ref r1
+    goto L21
+L25:
+    dec_ref r0
+    dec_ref r1
+    dec_ref size :: int
+    goto L22
+L26:
+    dec_ref r0
+    dec_ref r1
+    dec_ref size :: int
+    dec_ref r10 :: int
+    goto L22
+L27:
+    dec_ref r10 :: int
+    goto L3
+L28:
+    dec_ref r27
+    goto L20
+L29:
+    dec_ref r0
+    dec_ref r1
+    dec_ref size :: int
+    dec_ref r27
+    dec_ref r28
+    goto L22
+L30:
+    dec_ref r28
+    goto L15
+L31:
+    dec_ref r0
+    dec_ref r1
+    dec_ref size :: int
+    dec_ref r27
+    goto L22
+
+def kosaraju_scc(graph):
+    graph :: object
+    r0 :: scc_algo.kosaraju_scc_env
+    r1 :: bool
+    r2 :: list
+    r3 :: bool
+    r4 :: set
+    r5 :: bool
+    r6 :: scc_algo.dfs_finish_time_kosaraju_scc_obj
+    r7 :: bool
+    dfs_finish_time, r8 :: object
+    r9 :: str
+    r10, r11, r12, node :: object
+    r13 :: set
+    r14 :: i32
+    r15 :: bit
+    r16, r17 :: bool
+    r18 :: object[1]
+    r19 :: object_ptr
+    r20 :: object
+    r21 :: bit
+    r22, r23 :: object
+    r24 :: bool
+    r25 :: list
+    r26 :: set
+    r27 :: i32
+    r28 :: bit
+    r29 :: scc_algo.dfs_collect_scc_size_kosaraju_scc_obj
+    r30 :: bool
+    dfs_collect_scc_size :: object
+    r31 :: list
+    r32 :: ptr
+    r33 :: native_int
+    r34 :: short_int
+    r35 :: bit
+    r36 :: list
+    r37 :: object
+    r38 :: int
+    r39 :: object
+    r40 :: set
+    r41 :: i32
+    r42 :: bit
+    r43, r44 :: bool
+    r45 :: object[1]
+    r46 :: object_ptr
+    r47 :: object
+    r48 :: int
+    r49 :: object
+    r50 :: i32
+    r51 :: bit
+    r52 :: ptr
+    r53 :: native_int
+    r54 :: short_int
+    r55, r56 :: tuple[int, list]
+L0:
+    r0 = kosaraju_scc_env()
+    if is_error(r0) goto L39 (error at kosaraju_scc:9) else goto L1
+L1:
+    inc_ref graph
+    r0.graph = graph; r1 = is_error
+    if not r1 goto L40 (error at kosaraju_scc:9) else goto L2 :: bool
+L2:
+    r2 = PyList_New(0)
+    if is_error(r2) goto L40 (error at kosaraju_scc:20) else goto L3
+L3:
+    r0.finish_stack = r2; r3 = is_error
+    if not r3 goto L40 (error at kosaraju_scc:20) else goto L4 :: bool
+L4:
+    r4 = PySet_New(0)
+    if is_error(r4) goto L40 (error at kosaraju_scc:21) else goto L5
+L5:
+    r0.visited = r4; r5 = is_error
+    if not r5 goto L40 (error at kosaraju_scc:21) else goto L6 :: bool
+L6:
+    r6 = dfs_finish_time_kosaraju_scc_obj()
+    if is_error(r6) goto L40 (error at kosaraju_scc:23) else goto L7
+L7:
+    inc_ref r0
+    r6.__mypyc_env__ = r0; r7 = is_error
+    if not r7 goto L41 (error at kosaraju_scc:23) else goto L8 :: bool
+L8:
+    dfs_finish_time = r6
+    r8 = r0.graph
+    if is_error(r8) goto L42 (error at kosaraju_scc:43) else goto L9
+L9:
+    r9 = 'vertices'
+    r10 = CPyObject_GetAttr(r8, r9)
+    dec_ref r8
+    if is_error(r10) goto L42 (error at kosaraju_scc:43) else goto L10
+L10:
+    r11 = PyObject_GetIter(r10)
+    dec_ref r10
+    if is_error(r11) goto L42 (error at kosaraju_scc:43) else goto L11
+L11:
+    r12 = PyIter_Next(r11)
+    if is_error(r12) goto L43 else goto L12
+L12:
+    node = r12
+    r13 = r0.visited
+    if is_error(r13) goto L44 (error at kosaraju_scc:44) else goto L13
+L13:
+    r14 = PySet_Contains(r13, node)
+    dec_ref r13
+    r15 = r14 >= 0 :: signed
+    if not r15 goto L44 (error at kosaraju_scc:44) else goto L14 :: bool
+L14:
+    r16 = truncate r14: i32 to builtins.bool
+    r17 = r16 ^ 1
+    if r17 goto L15 else goto L45 :: bool
+L15:
+    r18 = [node]
+    r19 = load_address r18
+    r20 = _PyObject_Vectorcall(dfs_finish_time, r19, 1, 0)
+    if is_error(r20) goto L44 (error at kosaraju_scc:45) else goto L46
+L16:
+    dec_ref node
+    goto L11
+L17:
+    r21 = CPy_NoErrOccured()
+    if not r21 goto L40 (error at kosaraju_scc:43) else goto L18 :: bool
+L18:
+    r22 = r0.graph
+    if is_error(r22) goto L40 (error at kosaraju_scc:47) else goto L19
+L19:
+    r23 = reverse_graph(r22)
+    dec_ref r22
+    if is_error(r23) goto L40 (error at kosaraju_scc:47) else goto L20
+L20:
+    r0.reversed_graph = r23; r24 = is_error
+    if not r24 goto L40 (error at kosaraju_scc:47) else goto L21 :: bool
+L21:
+    r25 = PyList_New(0)
+    if is_error(r25) goto L40 (error at kosaraju_scc:48) else goto L22
+L22:
+    r26 = r0.visited
+    if is_error(r26) goto L47 (error at kosaraju_scc:49) else goto L23
+L23:
+    r27 = PySet_Clear(r26)
+    dec_ref r26
+    r28 = r27 >= 0 :: signed
+    if not r28 goto L47 (error at kosaraju_scc:49) else goto L24 :: bool
+L24:
+    r29 = dfs_collect_scc_size_kosaraju_scc_obj()
+    if is_error(r29) goto L47 (error at kosaraju_scc:51) else goto L25
+L25:
+    inc_ref r0
+    r29.__mypyc_env__ = r0; r30 = is_error
+    if not r30 goto L48 (error at kosaraju_scc:51) else goto L26 :: bool
+L26:
+    dfs_collect_scc_size = r29
+L27:
+    r31 = r0.finish_stack
+    if is_error(r31) goto L49 (error at kosaraju_scc:67) else goto L28
+L28:
+    r32 = get_element_ptr r31 ob_size :: PyVarObject
+    r33 = load_mem r32 :: native_int*
+    dec_ref r31
+    r34 = r33 << 1
+    r35 = r34 != 0
+    if r35 goto L29 else goto L50 :: bool
+L29:
+    r36 = r0.finish_stack
+    if is_error(r36) goto L49 (error at kosaraju_scc:68) else goto L30
+L30:
+    r37 = CPyList_PopLast(r36)
+    dec_ref r36
+    if is_error(r37) goto L49 (error at kosaraju_scc:68) else goto L31
+L31:
+    r38 = unbox(int, r37)
+    dec_ref r37
+    if is_error(r38) goto L49 (error at kosaraju_scc:68) else goto L32
+L32:
+    r39 = box(int, r38)
+    node = r39
+    r40 = r0.visited
+    if is_error(r40) goto L51 (error at kosaraju_scc:69) else goto L33
+L33:
+    r41 = PySet_Contains(r40, node)
+    dec_ref r40
+    r42 = r41 >= 0 :: signed
+    if not r42 goto L51 (error at kosaraju_scc:69) else goto L34 :: bool
+L34:
+    r43 = truncate r41: i32 to builtins.bool
+    r44 = r43 ^ 1
+    if r44 goto L35 else goto L52 :: bool
+L35:
+    r45 = [node]
+    r46 = load_address r45
+    r47 = _PyObject_Vectorcall(dfs_collect_scc_size, r46, 1, 0)
+    if is_error(r47) goto L51 (error at kosaraju_scc:70) else goto L36
+L36:
+    dec_ref node
+    r48 = unbox(int, r47)
+    dec_ref r47
+    if is_error(r48) goto L49 (error at kosaraju_scc:70) else goto L37
+L37:
+    r49 = box(int, r48)
+    r50 = PyList_Append(r25, r49)
+    dec_ref r49
+    r51 = r50 >= 0 :: signed
+    if not r51 goto L49 (error at kosaraju_scc:71) else goto L27 :: bool
+L38:
+    r52 = get_element_ptr r25 ob_size :: PyVarObject
+    r53 = load_mem r52 :: native_int*
+    r54 = r53 << 1
+    r55 = (r54, r25)
+    return r55
+L39:
+    r56 = <error> :: tuple[int, list]
+    return r56
+L40:
+    dec_ref r0
+    goto L39
+L41:
+    dec_ref r0
+    dec_ref r6
+    goto L39
+L42:
+    dec_ref r0
+    dec_ref dfs_finish_time
+    goto L39
+L43:
+    dec_ref dfs_finish_time
+    dec_ref r11
+    goto L17
+L44:
+    dec_ref r0
+    dec_ref dfs_finish_time
+    dec_ref r11
+    dec_ref node
+    goto L39
+L45:
+    dec_ref node
+    goto L11
+L46:
+    dec_ref r20
+    goto L16
+L47:
+    dec_ref r0
+    dec_ref r25
+    goto L39
+L48:
+    dec_ref r0
+    dec_ref r25
+    dec_ref r29
+    goto L39
+L49:
+    dec_ref r0
+    dec_ref r25
+    dec_ref dfs_collect_scc_size
+    goto L39
+L50:
+    dec_ref r0
+    dec_ref dfs_collect_scc_size
+    goto L38
+L51:
+    dec_ref r0
+    dec_ref node
+    dec_ref r25
+    dec_ref dfs_collect_scc_size
+    goto L39
+L52:
+    dec_ref node
+    goto L27
+
+def reverse_graph(graph):
+    graph, r0 :: object
+    r1 :: dict
+    r2 :: str
+    r3 :: object
+    r4 :: object[1]
+    r5 :: object_ptr
+    r6 :: object
+    r7 :: dict
+    r8 :: str
+    r9 :: object
+    r10 :: str
+    r11 :: object[1]
+    r12 :: object_ptr
+    r13, r14, r15, r16, r17 :: object
+    r18 :: bool
+    r19 :: object
+    r20 :: bool
+    r21 :: object
+    r22 :: bool
+    r23, r24, r25 :: object
+    r26 :: list
+    r27 :: i32
+    r28, r29, r30 :: bit
+    r31, r32 :: list
+    r33 :: dict
+    r34 :: str
+    r35, r36 :: object
+    r37 :: object[3]
+    r38 :: object_ptr
+    r39, r40 :: object
+    r41 :: str
+    r42 :: i32
+    r43 :: bit
+    r44 :: object
+L0:
+    r0 = load_address PyList_Type
+    r1 = scc_algo.globals :: static
+    r2 = 'defaultdict'
+    r3 = CPyDict_GetItem(r1, r2)
+    if is_error(r3) goto L30 (error at reverse_graph:85) else goto L1
+L1:
+    r4 = [r0]
+    r5 = load_address r4
+    r6 = _PyObject_Vectorcall(r3, r5, 1, 0)
+    dec_ref r3
+    if is_error(r6) goto L30 (error at reverse_graph:85) else goto L2
+L2:
+    r7 = cast(dict, r6)
+    if is_error(r7) goto L30 (error at reverse_graph:85) else goto L3
+L3:
+    r8 = 'adj_list'
+    r9 = CPyObject_GetAttr(graph, r8)
+    if is_error(r9) goto L31 (error at reverse_graph:86) else goto L4
+L4:
+    r10 = 'items'
+    r11 = [r9]
+    r12 = load_address r11
+    r13 = PyObject_VectorcallMethod(r10, r12, 9223372036854775809, 0)
+    if is_error(r13) goto L32 (error at reverse_graph:86) else goto L5
+L5:
+    dec_ref r9
+    r14 = PyObject_GetIter(r13)
+    dec_ref r13
+    if is_error(r14) goto L31 (error at reverse_graph:86) else goto L6
+L6:
+    r15 = PyIter_Next(r14)
+    if is_error(r15) goto L33 else goto L7
+L7:
+    r16 = PyObject_GetIter(r15)
+    dec_ref r15
+    if is_error(r16) goto L34 (error at reverse_graph:86) else goto L8
+L8:
+    r17 = PyIter_Next(r16)
+    if is_error(r17) goto L35 else goto L11
+L9:
+    r18 = raise ValueError('not enough values to unpack')
+    if not r18 goto L30 (error at reverse_graph:86) else goto L10 :: bool
+L10:
+    unreachable
+L11:
+    r19 = PyIter_Next(r16)
+    if is_error(r19) goto L36 else goto L14
+L12:
+    r20 = raise ValueError('not enough values to unpack')
+    if not r20 goto L30 (error at reverse_graph:86) else goto L13 :: bool
+L13:
+    unreachable
+L14:
+    r21 = PyIter_Next(r16)
+    dec_ref r16
+    if is_error(r21) goto L17 else goto L37
+L15:
+    r22 = raise ValueError('too many values to unpack')
+    if not r22 goto L30 (error at reverse_graph:86) else goto L16 :: bool
+L16:
+    unreachable
+L17:
+    r23 = PyObject_GetIter(r19)
+    dec_ref r19
+    if is_error(r23) goto L38 (error at reverse_graph:87) else goto L18
+L18:
+    r24 = PyIter_Next(r23)
+    if is_error(r24) goto L39 else goto L19
+L19:
+    r25 = CPyDict_GetItem(r7, r24)
+    dec_ref r24
+    if is_error(r25) goto L40 (error at reverse_graph:88) else goto L20
+L20:
+    r26 = cast(list, r25)
+    if is_error(r26) goto L40 (error at reverse_graph:88) else goto L21
+L21:
+    r27 = PyList_Append(r26, r17)
+    dec_ref r26
+    r28 = r27 >= 0 :: signed
+    if not r28 goto L40 (error at reverse_graph:88) else goto L18 :: bool
+L22:
+    r29 = CPy_NoErrOccured()
+    if not r29 goto L34 (error at reverse_graph:87) else goto L6 :: bool
+L23:
+    r30 = CPy_NoErrOccured()
+    if not r30 goto L31 (error at reverse_graph:86) else goto L24 :: bool
+L24:
+    r31 = CPyDict_Keys(r7)
+    if is_error(r31) goto L31 (error at reverse_graph:91) else goto L25
+L25:
+    r32 = PyList_New(0)
+    if is_error(r32) goto L41 (error at reverse_graph:91) else goto L26
+L26:
+    r33 = scc_algo.globals :: static
+    r34 = 'Graph'
+    r35 = CPyDict_GetItem(r33, r34)
+    if is_error(r35) goto L42 (error at reverse_graph:91) else goto L27
+L27:
+    r36 = box(bool, 0)
+    r37 = [r31, r32, r36]
+    r38 = load_address r37
+    r39 = ('vertices', 'edges', 'use_double_linked_list')
+    r40 = _PyObject_Vectorcall(r35, r38, 0, r39)
+    dec_ref r35
+    if is_error(r40) goto L42 (error at reverse_graph:91) else goto L28
+L28:
+    dec_ref r31
+    dec_ref r32
+    r41 = 'adj_list'
+    r42 = PyObject_SetAttr(r40, r41, r7)
+    dec_ref r7
+    r43 = r42 >= 0 :: signed
+    if not r43 goto L43 (error at reverse_graph:92) else goto L29 :: bool
+L29:
+    return r40
+L30:
+    r44 = <error> :: object
+    return r44
+L31:
+    dec_ref r7
+    goto L30
+L32:
+    dec_ref r7
+    dec_ref r9
+    goto L30
+L33:
+    dec_ref r14
+    goto L23
+L34:
+    dec_ref r7
+    dec_ref r14
+    goto L30
+L35:
+    dec_ref r7
+    dec_ref r14
+    dec_ref r16
+    goto L9
+L36:
+    dec_ref r7
+    dec_ref r14
+    dec_ref r16
+    dec_ref r17
+    goto L12
+L37:
+    dec_ref r7
+    dec_ref r14
+    dec_ref r17
+    dec_ref r19
+    dec_ref r21
+    goto L15
+L38:
+    dec_ref r7
+    dec_ref r14
+    dec_ref r17
+    goto L30
+L39:
+    dec_ref r17
+    dec_ref r23
+    goto L22
+L40:
+    dec_ref r7
+    dec_ref r14
+    dec_ref r17
+    dec_ref r23
+    goto L30
+L41:
+    dec_ref r7
+    dec_ref r31
+    goto L30
+L42:
+    dec_ref r7
+    dec_ref r31
+    dec_ref r32
+    goto L30
+L43:
+    dec_ref r40
+    goto L30
+
+def display_largest_scc_sizes(scc_sizes, num_largest):
+    scc_sizes :: list
+    num_largest :: int
+    r0 :: object
+    r1 :: str
+    r2, r3 :: object
+    r4 :: object[2]
+    r5 :: object_ptr
+    r6, r7 :: object
+    r8 :: list
+    r9 :: object
+    r10 :: list
+    r11, r12, r13, r14 :: str
+    r15 :: object
+    r16 :: str
+    r17 :: object
+    r18 :: object[1]
+    r19 :: object_ptr
+    r20, r21 :: object
+    r22 :: str
+    r23 :: object
+    r24 :: object[1]
+    r25 :: object_ptr
+    r26 :: object
+    r27 :: None
+L0:
+    if is_error(num_largest) goto L1 else goto L15
+L1:
+    num_largest = 10
+L2:
+    r0 = builtins :: module
+    r1 = 'sorted'
+    r2 = CPyObject_GetAttr(r0, r1)
+    if is_error(r2) goto L16 (error at display_largest_scc_sizes:104) else goto L3
+L3:
+    r3 = box(bool, 1)
+    r4 = [scc_sizes, r3]
+    r5 = load_address r4
+    r6 = ('reverse',)
+    r7 = _PyObject_Vectorcall(r2, r5, 1, r6)
+    dec_ref r2
+    if is_error(r7) goto L16 (error at display_largest_scc_sizes:104) else goto L4
+L4:
+    r8 = cast(list, r7)
+    if is_error(r8) goto L16 (error at display_largest_scc_sizes:104) else goto L5
+L5:
+    r9 = CPyList_GetSlice(r8, 0, num_largest)
+    dec_ref r8
+    if is_error(r9) goto L16 (error at display_largest_scc_sizes:107) else goto L6
+L6:
+    r10 = cast(list, r9)
+    if is_error(r10) goto L16 (error at display_largest_scc_sizes:107) else goto L7
+L7:
+    r11 = 'The sizes of the '
+    r12 = CPyTagged_Str(num_largest)
+    dec_ref num_largest :: int
+    if is_error(r12) goto L17 (error at display_largest_scc_sizes:110) else goto L8
+L8:
+    r13 = ' largest SCCs are:'
+    r14 = CPyStr_Build(3, r11, r12, r13)
+    dec_ref r12
+    if is_error(r14) goto L17 (error at display_largest_scc_sizes:110) else goto L9
+L9:
+    r15 = builtins :: module
+    r16 = 'print'
+    r17 = CPyObject_GetAttr(r15, r16)
+    if is_error(r17) goto L18 (error at display_largest_scc_sizes:110) else goto L10
+L10:
+    r18 = [r14]
+    r19 = load_address r18
+    r20 = _PyObject_Vectorcall(r17, r19, 1, 0)
+    dec_ref r17
+    if is_error(r20) goto L18 (error at display_largest_scc_sizes:110) else goto L19
+L11:
+    dec_ref r14
+    r21 = builtins :: module
+    r22 = 'print'
+    r23 = CPyObject_GetAttr(r21, r22)
+    if is_error(r23) goto L17 (error at display_largest_scc_sizes:111) else goto L12
+L12:
+    r24 = [r10]
+    r25 = load_address r24
+    r26 = _PyObject_Vectorcall(r23, r25, 1, 0)
+    dec_ref r23
+    if is_error(r26) goto L17 (error at display_largest_scc_sizes:111) else goto L20
+L13:
+    dec_ref r10
+    return 1
+L14:
+    r27 = <error> :: None
+    return r27
+L15:
+    inc_ref num_largest :: int
+    goto L2
+L16:
+    dec_ref num_largest :: int
+    goto L14
+L17:
+    dec_ref r10
+    goto L14
+L18:
+    dec_ref r10
+    dec_ref r14
+    goto L14
+L19:
+    dec_ref r20
+    goto L11
+L20:
+    dec_ref r26
+    goto L13
+
+def main():
+    r0 :: str
+    r1 :: dict
+    r2 :: str
+    r3 :: object
+    r4 :: object[1]
+    r5 :: object_ptr
+    r6 :: object
+    r7 :: dict
+    r8 :: str
+    r9, r10 :: object
+    r11 :: float
+    r12 :: bit
+    r13 :: tuple[int, list]
+    r14 :: object
+    r15, r16 :: int
+    r17, r18 :: list
+    r19 :: dict
+    r20 :: str
+    r21, r22 :: object
+    r23 :: float
+    r24 :: bit
+    r25 :: float
+    r26, r27, r28 :: str
+    r29 :: float
+    r30, r31 :: str
+    r32 :: object
+    r33 :: object[3]
+    r34 :: object_ptr
+    r35, r36 :: object
+    r37, r38 :: str
+    r39 :: list
+    r40, r41, r42, r43 :: ptr
+    r44 :: str
+    r45 :: object
+    r46 :: str
+    r47 :: object
+    r48 :: object[1]
+    r49 :: object_ptr
+    r50 :: object
+    r51 :: int
+    r52, r53 :: None
+L0:
+    r0 = 'scc.txt'
+    inc_ref r0
+    r1 = scc_algo.globals :: static
+    r2 = 'load_graph'
+    r3 = CPyDict_GetItem(r1, r2)
+    if is_error(r3) goto L20 (error at main:115) else goto L1
+L1:
+    r4 = [r0]
+    r5 = load_address r4
+    r6 = _PyObject_Vectorcall(r3, r5, 1, 0)
+    dec_ref r3
+    if is_error(r6) goto L20 (error at main:115) else goto L2
+L2:
+    dec_ref r0
+    r7 = scc_algo.globals :: static
+    r8 = 'perf_counter'
+    r9 = CPyDict_GetItem(r7, r8)
+    if is_error(r9) goto L21 (error at main:118) else goto L3
+L3:
+    r10 = _PyObject_Vectorcall(r9, 0, 0, 0)
+    dec_ref r9
+    if is_error(r10) goto L21 (error at main:118) else goto L4
+L4:
+    r11 = unbox(float, r10)
+    dec_ref r10
+    r12 = r11 == -113.0
+    if r12 goto L6 else goto L5 :: bool
+L5:
+    r13 = kosaraju_scc(r6)
+    dec_ref r6
+    if is_error(r13) goto L19 (error at main:119) else goto L7
+L6:
+    r14 = PyErr_Occurred()
+    if not is_error(r14) goto L21 (error at main:118) else goto L5
+L7:
+    r15 = borrow r13[0]
+    r16 = unborrow r15
+    dec_ref r16 :: int
+    r17 = borrow r13[1]
+    r18 = unborrow r17
+    r19 = scc_algo.globals :: static
+    r20 = 'perf_counter'
+    r21 = CPyDict_GetItem(r19, r20)
+    if is_error(r21) goto L22 (error at main:120) else goto L8
+L8:
+    r22 = _PyObject_Vectorcall(r21, 0, 0, 0)
+    dec_ref r21
+    if is_error(r22) goto L22 (error at main:120) else goto L9
+L9:
+    r23 = unbox(float, r22)
+    dec_ref r22
+    r24 = r23 == -113.0
+    if r24 goto L11 else goto L10 :: bool
+L10:
+    r25 = r23 - r11
+    r26 = ''
+    r27 = 'time taken:\t'
+    r28 = '{:{}}'
+    r29 = r25 * 1000.0
+    r30 = '.3f'
+    r31 = 'format'
+    r32 = box(float, r29)
+    r33 = [r28, r32, r30]
+    r34 = load_address r33
+    r35 = PyObject_VectorcallMethod(r31, r34, 9223372036854775811, 0)
+    if is_error(r35) goto L23 (error at main:124) else goto L12
+L11:
+    r36 = PyErr_Occurred()
+    if not is_error(r36) goto L22 (error at main:120) else goto L10
+L12:
+    dec_ref r32
+    r37 = cast(str, r35)
+    if is_error(r37) goto L22 (error at main:124) else goto L13
+L13:
+    r38 = ' msec'
+    r39 = PyList_New(3)
+    if is_error(r39) goto L24 (error at main:124) else goto L14
+L14:
+    r40 = get_element_ptr r39 ob_item :: PyListObject
+    r41 = load_mem r40 :: ptr*
+    inc_ref r27
+    set_mem r41, r27 :: builtins.object*
+    r42 = r41 + 8
+    set_mem r42, r37 :: builtins.object*
+    inc_ref r38
+    r43 = r41 + 16
+    set_mem r43, r38 :: builtins.object*
+    r44 = PyUnicode_Join(r26, r39)
+    dec_ref r39
+    if is_error(r44) goto L22 (error at main:124) else goto L15
+L15:
+    r45 = builtins :: module
+    r46 = 'print'
+    r47 = CPyObject_GetAttr(r45, r46)
+    if is_error(r47) goto L25 (error at main:124) else goto L16
+L16:
+    r48 = [r44]
+    r49 = load_address r48
+    r50 = _PyObject_Vectorcall(r47, r49, 1, 0)
+    dec_ref r47
+    if is_error(r50) goto L25 (error at main:124) else goto L26
+L17:
+    dec_ref r44
+    r51 = <error> :: int
+    r52 = display_largest_scc_sizes(r18, r51)
+    dec_ref r18
+    if is_error(r52) goto L19 (error at main:127) else goto L18
+L18:
+    return 1
+L19:
+    r53 = <error> :: None
+    return r53
+L20:
+    dec_ref r0
+    goto L19
+L21:
+    dec_ref r6
+    goto L19
+L22:
+    dec_ref r18
+    goto L19
+L23:
+    dec_ref r18
+    dec_ref r32
+    goto L19
+L24:
+    dec_ref r18
+    dec_ref r37
+    goto L19
+L25:
+    dec_ref r18
+    dec_ref r44
+    goto L19
+L26:
+    dec_ref r50
+    goto L17
+
+def __top_level__():
+    r0, r1 :: object
+    r2 :: bit
+    r3 :: str
+    r4, r5, r6 :: object
+    r7 :: str
+    r8 :: dict
+    r9, r10 :: object
+    r11 :: str
+    r12 :: dict
+    r13, r14 :: object
+    r15 :: str
+    r16 :: dict
+    r17 :: object
+    r18 :: object_ptr
+    r19 :: object_ptr[1]
+    r20 :: c_ptr
+    r21 :: native_int[1]
+    r22 :: c_ptr
+    r23 :: object
+    r24 :: dict
+    r25, r26 :: str
+    r27 :: bit
+    r28 :: object
+    r29 :: str
+    r30 :: dict
+    r31, r32 :: object
+    r33 :: str
+    r34, r35 :: object
+    r36 :: object[1]
+    r37 :: object_ptr
+    r38 :: object
+    r39 :: dict
+    r40 :: str
+    r41 :: object
+    r42, r43 :: str
+    r44 :: i32
+    r45 :: bit
+    r46 :: object
+    r47, r48, r49 :: bit
+    r50, r51 :: None
+L0:
+    r0 = builtins :: module
+    r1 = load_address _Py_NoneStruct
+    r2 = r0 != r1
+    if r2 goto L3 else goto L1 :: bool
+L1:
+    r3 = 'builtins'
+    r4 = PyImport_Import(r3)
+    if is_error(r4) goto L18 (error at <module>:-1) else goto L2
+L2:
+    builtins = r4 :: module
+    dec_ref r4
+L3:
+    r5 = ('Graph', 'load_graph_from_file')
+    r6 = ('Graph', 'load_graph')
+    r7 = 'adj_list_rep'
+    r8 = scc_algo.globals :: static
+    r9 = CPyImport_ImportFromMany(r7, r5, r6, r8)
+    if is_error(r9) goto L18 (error at <module>:1) else goto L4
+L4:
+    adj_list_rep = r9 :: module
+    dec_ref r9
+    r10 = ('defaultdict',)
+    r11 = 'collections'
+    r12 = scc_algo.globals :: static
+    r13 = CPyImport_ImportFromMany(r11, r10, r10, r12)
+    if is_error(r13) goto L18 (error at <module>:2) else goto L5
+L5:
+    collections = r13 :: module
+    dec_ref r13
+    r14 = ('List', 'Tuple', 'Set')
+    r15 = 'typing'
+    r16 = scc_algo.globals :: static
+    r17 = CPyImport_ImportFromMany(r15, r14, r14, r16)
+    if is_error(r17) goto L18 (error at <module>:3) else goto L6
+L6:
+    typing = r17 :: module
+    dec_ref r17
+    r18 = load_address sys :: module
+    r19 = [r18]
+    r20 = load_address r19
+    r21 = [4]
+    r22 = load_address r21
+    r23 = (('sys', 'sys', 'sys'),)
+    r24 = scc_algo.globals :: static
+    r25 = 'scc_algo.py'
+    r26 = '<module>'
+    r27 = CPyImport_ImportMany(r23, r20, r24, r25, r26, r22)
+    if not r27 goto L18 else goto L7 :: bool
+L7:
+    r28 = ('perf_counter',)
+    r29 = 'time'
+    r30 = scc_algo.globals :: static
+    r31 = CPyImport_ImportFromMany(r29, r28, r28, r30)
+    if is_error(r31) goto L18 (error at <module>:4) else goto L8
+L8:
+    time = r31 :: module
+    dec_ref r31
+    r32 = sys :: module
+    r33 = 'setrecursionlimit'
+    r34 = CPyObject_GetAttr(r32, r33)
+    if is_error(r34) goto L18 (error at <module>:7) else goto L9
+L9:
+    r35 = object 1000000
+    r36 = [r35]
+    r37 = load_address r36
+    r38 = _PyObject_Vectorcall(r34, r37, 1, 0)
+    dec_ref r34
+    if is_error(r38) goto L18 (error at <module>:7) else goto L19
+L10:
+    r39 = scc_algo.globals :: static
+    r40 = '__name__'
+    r41 = CPyDict_GetItem(r39, r40)
+    if is_error(r41) goto L18 (error at <module>:129) else goto L11
+L11:
+    r42 = cast(str, r41)
+    if is_error(r42) goto L18 (error at <module>:129) else goto L12
+L12:
+    r43 = '__main__'
+    r44 = PyUnicode_Compare(r42, r43)
+    dec_ref r42
+    r45 = r44 == -1
+    if r45 goto L13 else goto L15 :: bool
+L13:
+    r46 = PyErr_Occurred()
+    r47 = r46 != 0
+    if r47 goto L14 else goto L15 :: bool
+L14:
+    r48 = CPy_KeepPropagating()
+    if not r48 goto L18 (error at <module>:129) else goto L15 :: bool
+L15:
+    r49 = r44 == 0
+    if r49 goto L16 else goto L17 :: bool
+L16:
+    r50 = main()
+    if is_error(r50) goto L18 (error at <module>:130) else goto L17
+L17:
+    return 1
+L18:
+    r51 = <error> :: None
+    return r51
+L19:
+    dec_ref r38
+    goto L10
