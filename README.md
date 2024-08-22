@@ -13,6 +13,7 @@ For large graphs, such as the one provided by course **Design and Analysis of Al
 **Context about the Graph of the assignment**:
 - Order of Graph = 875,714 (i.e. 875,714 vertices) 
 - Orders of the 3 largest SCCs (meta-vertices): 434821, 968, 459
+- Size of text file containing the Graph: 72.7 MB
 
 By compiling the Python modules to C extensions using mypyc, I achieved an execution time of **3.14 hours** for processing the given graph. In contrast, the same algorithm implemented in vanilla Python without mypyc took approximately **31.4 hours** to complete, based on extrapolation from smaller test cases. This comparison showcases a **10x speedup** in execution time when using mypyc for compiling the Python code.
 
